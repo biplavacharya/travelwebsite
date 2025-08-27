@@ -112,8 +112,16 @@
                 </form>
                 
                 <!-- Message Box for search results -->
-                <div id="results-container" class="mt-8 hidden">
-                    <!-- Search results will be dynamically injected here by JavaScript -->
+                <div id="results-container" class="mt-8 hidden p-6 bg-white text-dark rounded-xl shadow-lg">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold">Search Results</h3>
+                        <button id="close-results-button" class="text-gray-500 hover:text-gray-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="results-content" class="space-y-4"></div>
                 </div>
             </div>
         </section>
@@ -282,7 +290,133 @@
         </div>
     </footer>
 
-    <!-- Link to our custom JavaScript file -->
-    <script src="assets/js/main.js"></script>
+    <!-- JavaScript for dynamic page content and interactivity -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const destinationLinks = document.querySelectorAll('.destination-link');
+            const popularDestinationsSection = document.getElementById('popular-destinations');
+            const destinationDetailsSection = document.getElementById('destination-details');
+            const ctaSection = document.getElementById('cta-section');
+            const backButton = document.getElementById('back-button');
+            const searchForm = document.getElementById('search-form');
+            const destinationInput = document.getElementById('destination-input');
+            const resultsContainer = document.getElementById('results-container');
+            const resultsContent = document.getElementById('results-content');
+            const closeResultsButton = document.getElementById('close-results-button');
+
+            const destinations = {
+                annapurna: {
+                    title: 'Annapurna Base Camp Trek',
+                    description: 'A classic trek that takes you through diverse landscapes, from lush rhododendron forests and terraced fields to the magnificent alpine meadows of the Annapurna Sanctuary. The 10-14 day journey offers stunning views of the Annapurna, Dhaulagiri, and Machhapuchhre mountain ranges.',
+                    price: '$1,800',
+                    image: 'https://placehold.co/1200x800/1e40af/ffffff?text=Annapurna+Base+Camp'
+                },
+                everest: {
+                    title: 'Everest Base Camp Trek',
+                    description: 'The ultimate adventure for trekkers, this expedition follows in the footsteps of legendary mountaineers. The 12-15 day trek takes you through the heart of the Khumbu region, past Sherpa villages, and culminates at the base of the world’s highest peak, Mount Everest.',
+                    price: '$2,500',
+                    image: 'https://placehold.co/1200x800/1e40af/ffffff?text=Everest+Base+Camp'
+                },
+                manaslu: {
+                    title: 'Manaslu Base Camp Circuit',
+                    description: 'A challenging but incredibly rewarding trek that circles the world’s eighth-highest mountain, Manaslu. This 17-20 day journey offers an authentic cultural experience, with spectacular scenery and a remote feel, as it is a less-traveled route than the more popular treks.',
+                    price: '$2,200',
+                    image: 'https://placehold.co/1200x800/1e40af/ffffff?text=Manaslu+Base+Camp'
+                },
+                tilicho: {
+                    title: 'Tilicho Lake Trek',
+                    description: 'Journey to one of the highest lakes in the world, Tilicho Lake, nestled in a dramatic landscape of stark beauty. This 12-16 day trek is an off-the-beaten-path alternative to the classic Annapurna Circuit, offering breathtaking views and a sense of true adventure.',
+                    price: '$1,950',
+                    image: 'https://placehold.co/1200x800/1e40af/ffffff?text=Tilicho+Lake'
+                }
+            };
+
+            // Toggle mobile menu visibility
+            mobileMenuButton.addEventListener('click', () => {
+                const isHidden = mobileMenu.classList.contains('-translate-y-full');
+                if (isHidden) {
+                    mobileMenu.classList.remove('-translate-y-full');
+                    mobileMenu.classList.add('translate-y-0');
+                } else {
+                    mobileMenu.classList.remove('translate-y-0');
+                    mobileMenu.classList.add('-translate-y-full');
+                }
+            });
+
+            // Handle clicks on "Explore packages" links
+            destinationLinks.forEach(link => {
+                link.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const destinationId = event.target.closest('.destination-link').dataset.destination;
+                    const destination = destinations[destinationId];
+
+                    if (destination) {
+                        // Populate the destination details section
+                        document.getElementById('destination-title').textContent = destination.title;
+                        document.getElementById('destination-description').textContent = destination.description;
+                        document.getElementById('destination-price').textContent = `Starting from ${destination.price}`;
+                        document.getElementById('destination-image').src = destination.image;
+                        document.getElementById('destination-image').alt = destination.title;
+
+                        // Hide popular destinations and show details
+                        popularDestinationsSection.classList.add('hidden');
+                        ctaSection.classList.add('hidden');
+                        destinationDetailsSection.classList.remove('hidden');
+                        resultsContainer.classList.add('hidden');
+                    }
+                });
+            });
+
+            // Handle "Back to Home" button click
+            backButton.addEventListener('click', (event) => {
+                event.preventDefault();
+                // Hide destination details and show home sections
+                destinationDetailsSection.classList.add('hidden');
+                popularDestinationsSection.classList.remove('hidden');
+                ctaSection.classList.remove('hidden');
+            });
+
+            // Handle search form submission
+            searchForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const query = destinationInput.value.toLowerCase().trim();
+                let foundDestinations = [];
+
+                if (query === '') {
+                    // If search is empty, show a message
+                    resultsContent.innerHTML = `<p class="text-red-500">Please enter a destination to search.</p>`;
+                } else {
+                    // Search through the destinations data
+                    foundDestinations = Object.keys(destinations)
+                        .filter(key => key.includes(query) || destinations[key].title.toLowerCase().includes(query))
+                        .map(key => destinations[key]);
+
+                    if (foundDestinations.length > 0) {
+                        resultsContent.innerHTML = '';
+                        foundDestinations.forEach(dest => {
+                            const resultItem = document.createElement('div');
+                            resultItem.classList.add('bg-gray-50', 'p-4', 'rounded-xl', 'shadow-sm');
+                            resultItem.innerHTML = `
+                                <h4 class="text-lg font-semibold">${dest.title}</h4>
+                                <p class="text-gray-600">${dest.description}</p>
+                            `;
+                            resultsContent.appendChild(resultItem);
+                        });
+                    } else {
+                        resultsContent.innerHTML = `<p>No results found for "${query}".</p>`;
+                    }
+                }
+                resultsContainer.classList.remove('hidden');
+            });
+
+            // Handle closing the search results message box
+            closeResultsButton.addEventListener('click', () => {
+                resultsContainer.classList.add('hidden');
+                resultsContent.innerHTML = '';
+            });
+        });
+    </script>
 </body>
 </html>
