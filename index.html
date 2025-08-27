@@ -1,8 +1,7 @@
 <!--
-  This is the main HTML file. It provides the structure for the entire website.
-  It links to the external style.css and main.js files for organization.
-  The design is based on the previous version but with more sections to
-  simulate a comprehensive booking site experience.
+  This is the main HTML file, updated to feature new trekking destinations.
+  The structure remains the same, but the content in the "Popular Destinations"
+  section has been completely replaced as requested.
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -77,7 +76,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="relative h-screen bg-cover bg-center flex items-center justify-center overflow-hidden" style="background-image: url('https://placehold.co/1920x1080/4f46e5/ffffff?text=Travel+the+World');">
+    <section class="relative h-screen bg-cover bg-center flex items-center justify-center overflow-hidden" style="background-image: url('https://placehold.co/1920x1080/4f46e5/ffffff?text=Himalayan+Treks');">
         <!-- Overlay -->
         <div class="absolute inset-0 bg-black opacity-40"></div>
         
@@ -85,7 +84,7 @@
         <div class="relative z-10 text-white text-center px-4 max-w-4xl mx-auto">
             <h1 class="text-4xl sm:text-5xl lg:text-7xl font-extrabold mb-4 animate-in fade-in-up duration-1000">Find Your Perfect Escape</h1>
             <p class="text-lg sm:text-xl mb-8 leading-relaxed animate-in fade-in-up duration-1000 delay-200">
-                Discover incredible destinations and seamless travel planning.
+                Discover incredible trekking and mountaineering expeditions in the Himalayas.
             </p>
 
             <!-- Search Form - Now with an ID for JavaScript interaction -->
@@ -94,14 +93,14 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
-                    <input type="text" id="destination-input" placeholder="Destination, city, or hotel" class="w-full bg-transparent text-dark placeholder-gray-500 outline-none">
+                    <input type="text" id="destination-input" placeholder="Destination, base camp, or city" class="w-full bg-transparent text-dark placeholder-gray-500 outline-none">
                 </div>
                 
                 <div class="flex-1 flex items-center bg-gray-100 rounded-2xl px-4 py-3">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h.01M9 16h.01M13 16h.01M15 11h.01M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
-                    <input type="text" id="date-input" placeholder="Check-in - Check-out" class="w-full bg-transparent text-dark placeholder-gray-500 outline-none">
+                    <input type="text" id="date-input" placeholder="Start - End Date" class="w-full bg-transparent text-dark placeholder-gray-500 outline-none">
                 </div>
                 
                 <button type="submit" class="w-full md:w-auto bg-primary text-white font-semibold py-3 px-8 rounded-2xl shadow-lg hover:bg-secondary transition-colors">
@@ -118,15 +117,15 @@
 
     <!-- Popular Destinations Section -->
     <section id="popular-destinations" class="container mx-auto px-4 py-16 sm:py-24">
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-center mb-12">Popular Destinations</h2>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-center mb-12">Popular Expeditions</h2>
         
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Destination Card 1 -->
+            <!-- Annapurna Base Camp Card -->
             <div class="bg-white rounded-3xl overflow-hidden shadow-xl card-hover transition-transform duration-300 ease-in-out">
-                <img src="https://placehold.co/600x400/1e40af/ffffff?text=Paris" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1e40af/ffffff?text=Paris';" class="w-full h-48 object-cover">
+                <img src="https://placehold.co/600x400/1e40af/ffffff?text=Annapurna+Base+Camp" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1e40af/ffffff?text=Annapurna+Base+Camp';" class="w-full h-48 object-cover">
                 <div class="p-6">
-                    <h3 class="text-2xl font-bold mb-2">Paris, France</h3>
-                    <p class="text-gray-600 mb-4">The city of light, romance, and unparalleled art. A must-see for every traveler.</p>
+                    <h3 class="text-2xl font-bold mb-2">Annapurna Base Camp</h3>
+                    <p class="text-gray-600 mb-4">A trek through diverse landscapes, from lush rhododendron forests to alpine meadows, with a spectacular climax at the Annapurna Sanctuary.</p>
                     <a href="#" class="inline-flex items-center text-primary font-semibold hover:underline">
                         Explore packages
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -136,12 +135,12 @@
                 </div>
             </div>
             
-            <!-- Destination Card 2 -->
+            <!-- Everest Base Camp Card -->
             <div class="bg-white rounded-3xl overflow-hidden shadow-xl card-hover transition-transform duration-300 ease-in-out">
-                <img src="https://placehold.co/600x400/1e40af/ffffff?text=Tokyo" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1e40af/ffffff?text=Tokyo';" class="w-full h-48 object-cover">
+                <img src="https://placehold.co/600x400/1e40af/ffffff?text=Everest+Base+Camp" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1e40af/ffffff?text=Everest+Base+Camp';" class="w-full h-48 object-cover">
                 <div class="p-6">
-                    <h3 class="text-2xl font-bold mb-2">Tokyo, Japan</h3>
-                    <p class="text-gray-600 mb-4">A mesmerizing blend of ancient traditions and futuristic cityscapes. Experience a unique culture.</p>
+                    <h3 class="text-2xl font-bold mb-2">Everest Base Camp</h3>
+                    <p class="text-gray-600 mb-4">The ultimate adventure, following in the footsteps of legends to the foot of the world's highest peak.</p>
                     <a href="#" class="inline-flex items-center text-primary font-semibold hover:underline">
                         Explore packages
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -151,12 +150,27 @@
                 </div>
             </div>
 
-            <!-- Destination Card 3 -->
+            <!-- Manaslu Base Camp Card -->
             <div class="bg-white rounded-3xl overflow-hidden shadow-xl card-hover transition-transform duration-300 ease-in-out">
-                <img src="https://placehold.co/600x400/1e40af/ffffff?text=Rio" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1e40af/ffffff?text=Rio';" class="w-full h-48 object-cover">
+                <img src="https://placehold.co/600x400/1e40af/ffffff?text=Manaslu+Base+Camp" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1e40af/ffffff?text=Manaslu+Base+Camp';" class="w-full h-48 object-cover">
                 <div class="p-6">
-                    <h3 class="text-2xl font-bold mb-2">Rio de Janeiro, Brazil</h3>
-                    <p class="text-gray-600 mb-4">Vibrant beaches, lush mountains, and a rhythm of life that's utterly infectious. An unforgettable journey.</p>
+                    <h3 class="text-2xl font-bold mb-2">Manaslu Base Camp</h3>
+                    <p class="text-gray-600 mb-4">A challenging but incredibly rewarding circuit that circles the world's eighth-highest mountain, offering stunning views and cultural immersion.</p>
+                    <a href="#" class="inline-flex items-center text-primary font-semibold hover:underline">
+                        Explore packages
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Tilicho Lake Card -->
+            <div class="bg-white rounded-3xl overflow-hidden shadow-xl card-hover transition-transform duration-300 ease-in-out">
+                <img src="https://placehold.co/600x400/1e40af/ffffff?text=Tilicho+Lake" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1e40af/ffffff?text=Tilicho+Lake';" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold mb-2">Tilicho Lake</h3>
+                    <p class="text-gray-600 mb-4">Journey to one of the world's highest lakes, nestled in a dramatic landscape of stark beauty and majestic mountain peaks.</p>
                     <a href="#" class="inline-flex items-center text-primary font-semibold hover:underline">
                         Explore packages
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
