@@ -1,0 +1,245 @@
+<!--
+  This is the main HTML file. It provides the structure for the entire website.
+  It links to the external style.css and main.js files for organization.
+  The design is based on the previous version but with more sections to
+  simulate a comprehensive booking site experience.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wanderlust Travel Co. - Book Your Next Adventure</title>
+    
+    <!-- Load Tailwind CSS from CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Load Google Font: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Link to our custom stylesheet -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Custom Tailwind Configuration for font and color palette -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#1a56db', // A vibrant blue for key elements
+                        secondary: '#4f46e5', // A cool purple for accents
+                        dark: '#1f2937', // Dark gray for text
+                        light: '#f9fafb', // Light gray for backgrounds
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-light">
+
+    <!-- Header & Navigation -->
+    <header class="absolute top-0 left-0 right-0 z-50">
+        <nav class="container mx-auto px-4 py-6 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="text-white text-3xl font-bold tracking-tight">Wanderlust</a>
+            
+            <!-- Mobile Menu Button (Hidden on larger screens) -->
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+
+            <!-- Desktop Navigation Links -->
+            <div class="hidden md:flex items-center space-x-8 text-white font-medium">
+                <a href="#" class="hover:text-gray-300 transition-colors">Home</a>
+                <a href="#" class="hover:text-gray-300 transition-colors">Destinations</a>
+                <a href="#" class="hover:text-gray-300 transition-colors">About Us</a>
+                <a href="#" class="hover:text-gray-300 transition-colors">Contact</a>
+                <a href="#" class="bg-white text-primary px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-gray-200 transition-colors">Login / Sign Up</a>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="md:hidden bg-primary text-white text-center py-4 space-y-4 transition-all duration-300 ease-in-out transform -translate-y-full absolute w-full top-0 left-0 z-40">
+            <a href="#" class="block hover:bg-white hover:text-primary py-2 transition-colors">Home</a>
+            <a href="#" class="block hover:bg-white hover:text-primary py-2 transition-colors">Destinations</a>
+            <a href="#" class="block hover:bg-white hover:text-primary py-2 transition-colors">About Us</a>
+            <a href="#" class="block hover:bg-white hover:text-primary py-2 transition-colors">Contact</a>
+            <a href="#" class="block bg-white text-primary rounded-full mx-8 py-2 font-semibold hover:bg-gray-200 transition-colors">Login / Sign Up</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen bg-cover bg-center flex items-center justify-center overflow-hidden" style="background-image: url('https://placehold.co/1920x1080/4f46e5/ffffff?text=Travel+the+World');">
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-black opacity-40"></div>
+        
+        <!-- Hero Content -->
+        <div class="relative z-10 text-white text-center px-4 max-w-4xl mx-auto">
+            <h1 class="text-4xl sm:text-5xl lg:text-7xl font-extrabold mb-4 animate-in fade-in-up duration-1000">Find Your Perfect Escape</h1>
+            <p class="text-lg sm:text-xl mb-8 leading-relaxed animate-in fade-in-up duration-1000 delay-200">
+                Discover incredible destinations and seamless travel planning.
+            </p>
+
+            <!-- Search Form - Now with an ID for JavaScript interaction -->
+            <form id="search-form" class="bg-white p-4 sm:p-6 rounded-3xl shadow-2xl space-y-4 md:space-y-0 md:flex md:space-x-4 animate-in fade-in-up duration-1000 delay-500">
+                <div class="flex-1 flex items-center bg-gray-100 rounded-2xl px-4 py-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                    <input type="text" id="destination-input" placeholder="Destination, city, or hotel" class="w-full bg-transparent text-dark placeholder-gray-500 outline-none">
+                </div>
+                
+                <div class="flex-1 flex items-center bg-gray-100 rounded-2xl px-4 py-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h.01M9 16h.01M13 16h.01M15 11h.01M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    <input type="text" id="date-input" placeholder="Check-in - Check-out" class="w-full bg-transparent text-dark placeholder-gray-500 outline-none">
+                </div>
+                
+                <button type="submit" class="w-full md:w-auto bg-primary text-white font-semibold py-3 px-8 rounded-2xl shadow-lg hover:bg-secondary transition-colors">
+                    Search
+                </button>
+            </form>
+            
+            <!-- Message Box for search results -->
+            <div id="results-container" class="mt-8 hidden">
+                <!-- Search results will be dynamically injected here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Destinations Section -->
+    <section id="popular-destinations" class="container mx-auto px-4 py-16 sm:py-24">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-center mb-12">Popular Destinations</h2>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Destination Card 1 -->
+            <div class="bg-white rounded-3xl overflow-hidden shadow-xl card-hover transition-transform duration-300 ease-in-out">
+                <img src="https://placehold.co/600x400/1e40af/ffffff?text=Paris" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1e40af/ffffff?text=Paris';" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold mb-2">Paris, France</h3>
+                    <p class="text-gray-600 mb-4">The city of light, romance, and unparalleled art. A must-see for every traveler.</p>
+                    <a href="#" class="inline-flex items-center text-primary font-semibold hover:underline">
+                        Explore packages
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Destination Card 2 -->
+            <div class="bg-white rounded-3xl overflow-hidden shadow-xl card-hover transition-transform duration-300 ease-in-out">
+                <img src="https://placehold.co/600x400/1e40af/ffffff?text=Tokyo" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1e40af/ffffff?text=Tokyo';" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold mb-2">Tokyo, Japan</h3>
+                    <p class="text-gray-600 mb-4">A mesmerizing blend of ancient traditions and futuristic cityscapes. Experience a unique culture.</p>
+                    <a href="#" class="inline-flex items-center text-primary font-semibold hover:underline">
+                        Explore packages
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Destination Card 3 -->
+            <div class="bg-white rounded-3xl overflow-hidden shadow-xl card-hover transition-transform duration-300 ease-in-out">
+                <img src="https://placehold.co/600x400/1e40af/ffffff?text=Rio" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1e40af/ffffff?text=Rio';" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold mb-2">Rio de Janeiro, Brazil</h3>
+                    <p class="text-gray-600 mb-4">Vibrant beaches, lush mountains, and a rhythm of life that's utterly infectious. An unforgettable journey.</p>
+                    <a href="#" class="inline-flex items-center text-primary font-semibold hover:underline">
+                        Explore packages
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="container mx-auto px-4 py-16 sm:py-24 text-center">
+        <div class="bg-primary text-white rounded-3xl p-8 sm:p-16 max-w-4xl mx-auto shadow-xl">
+            <h2 class="text-3xl sm:text-4xl font-extrabold mb-4">Ready for Your Next Trip?</h2>
+            <p class="text-lg sm:text-xl mb-8">
+                Sign up for our newsletter to receive exclusive deals and travel inspiration directly in your inbox.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <input type="email" placeholder="Enter your email" class="w-full sm:w-auto flex-1 bg-white text-dark py-4 px-6 rounded-2xl focus:outline-none focus:ring-2 focus:ring-secondary">
+                <button class="w-full sm:w-auto bg-dark text-white font-semibold py-4 px-8 rounded-2xl hover:bg-gray-700 transition-colors">
+                    Subscribe
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <!-- Footer Column 1 -->
+            <div>
+                <h3 class="text-2xl font-bold mb-4">Wanderlust</h3>
+                <p class="text-gray-400">Your journey begins here. Plan your next adventure with our expert guidance and exclusive deals.</p>
+            </div>
+            
+            <!-- Footer Column 2 -->
+            <div>
+                <h4 class="text-xl font-semibold mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-gray-400">
+                    <li><a href="#" class="hover:text-white transition-colors">Destinations</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Packages</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Hotels</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Flights</a></li>
+                </ul>
+            </div>
+            
+            <!-- Footer Column 3 -->
+            <div>
+                <h4 class="text-xl font-semibold mb-4">Support</h4>
+                <ul class="space-y-2 text-gray-400">
+                    <li><a href="#" class="hover:text-white transition-colors">Contact Us</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">FAQ</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+                </ul>
+            </div>
+            
+            <!-- Footer Column 4 -->
+            <div>
+                <h4 class="text-xl font-semibold mb-4">Connect</h4>
+                <div class="flex space-x-4">
+                    <!-- Social Media Icons (SVGs) -->
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 16h-3v-8h3v8zm-1.5-8.891c-.828 0-1.5-.671-1.5-1.5s.672-1.5 1.5-1.5 1.5.671 1.5 1.5-.672 1.5-1.5 1.5zm7.5 8.891h-3v-4.993h3v4.993z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2.035 15.112l-3.516-4.238 2.035-1.353 3.515 4.238-2.034 1.353zm-2.827-2.618l3.41-4.062 1.35 2.062-3.41 4.062-1.35-2.062zm-2.827-2.618l3.516-4.238 2.035 1.353-3.515 4.238-2.034-1.353zm-2.035-1.353l-1.35 2.062 3.41 4.062 1.35-2.062-3.41-4.062zm-1.353-2.035l4.238 3.516 1.353-2.035-4.238-3.516-1.353 2.035z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+            <p>&copy; 2025 Wanderlust Travel Co. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Link to our custom JavaScript file -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
